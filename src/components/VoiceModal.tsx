@@ -113,7 +113,7 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                             <circle
                                                 cx="128"
                                                 cy="128"
-                                                r="120"
+                                                r="0"
                                                 fill="none"
                                                 stroke="rgba(255,255,255,0.3)"
                                                 strokeWidth="2"
@@ -133,7 +133,7 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                             rotate: 360
                                         }}
                                         transition={{
-                                            duration: 20,
+                                            duration: 8,
                                             repeat: Infinity,
                                             ease: "linear"
                                         }}
@@ -169,20 +169,12 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                         />
                                     </motion.div>
 
-                                    {/* Cora SVG - Chat icon in center */}
-                                    <motion.div
+                                    {/* Cora SVG - Chat icon in center (static) */}
+                                    <div
                                         className="absolute"
                                         style={{
                                             width: '60px',
                                             height: '60px'
-                                        }}
-                                        animate={{
-                                            y: [0, -5, 0]
-                                        }}
-                                        transition={{
-                                            duration: 2.5,
-                                            repeat: Infinity,
-                                            ease: "easeInOut"
                                         }}
                                     >
                                         <img
@@ -190,7 +182,7 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                             alt=""
                                             className="w-full h-full object-contain"
                                         />
-                                    </motion.div>
+                                    </div>
                                 </div>
 
                                 {/* Animated Transcript */}
