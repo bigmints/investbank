@@ -53,6 +53,8 @@ body {
   overflow: hidden;
   /* App shell handles scrolling */
   background-color: var(--color-bg-app);
+  /* Prevent content from extending into safe area */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
