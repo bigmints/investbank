@@ -733,7 +733,7 @@ export default function FamilyCircle() {
                         className="flex flex-col h-full"
                     >
                         {/* Chat Header - Fixed with transparent gradient */}
-                        <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-6" style={{ background: 'linear-gradient(180deg, rgba(13, 18, 82, 0.95) 0%, rgba(13, 18, 82, 0.8) 40%, hsla(0, 0%, 80%, 0.00) 100%)', backdropFilter: 'blur(10px)' }}>
+                        <div className="absolute top-0 left-0 right-0 z-20 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-8 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(93, 26, 77, 0.98) 0%, rgba(93, 26, 77, 0.85) 40%, hsla(0, 0%, 80%, 0.00) 100%)', backdropFilter: 'blur(8px)' }}>
                             <div className="flex items-center justify-between pointer-events-auto">
                                 <div className="flex items-center gap-3">
                                     <button onClick={handleBackToDashboard} className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shadow-md hover:opacity-80 transition-opacity">
