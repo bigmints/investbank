@@ -107,16 +107,8 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                             >
                                 {/* Layered Bubble Visualization */}
                                 <div className="relative w-64 h-64 flex items-center justify-center">
-                                    {/* Outer rotating dashed circle */}
-                                    <motion.div
-                                        className="absolute inset-0"
-                                        animate={{ rotate: 360 }}
-                                        transition={{
-                                            duration: 20,
-                                            repeat: Infinity,
-                                            ease: "linear"
-                                        }}
-                                    >
+                                    {/* Outer static dashed circle */}
+                                    <div className="absolute inset-0">
                                         <svg className="w-full h-full" viewBox="0 0 256 256">
                                             <circle
                                                 cx="128"
@@ -128,9 +120,9 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                                 strokeDasharray="8 8"
                                             />
                                         </svg>
-                                    </motion.div>
+                                    </div>
 
-                                    {/* Bubble Layer 2 - Ring with wobble animation */}
+                                    {/* Bubble Layer 2 - Rotating ring */}
                                     <motion.div
                                         className="absolute"
                                         style={{
@@ -138,13 +130,12 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                             height: '180px'
                                         }}
                                         animate={{
-                                            scale: [1, 1.05, 1],
-                                            rotate: [0, 5, -5, 0]
+                                            rotate: 360
                                         }}
                                         transition={{
-                                            duration: 3,
+                                            duration: 20,
                                             repeat: Infinity,
-                                            ease: "easeInOut"
+                                            ease: "linear"
                                         }}
                                     >
                                         <img
@@ -154,7 +145,7 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                         />
                                     </motion.div>
 
-                                    {/* Bubble Layer 1 - Main gradient bubble with pulse */}
+                                    {/* Bubble Layer 1 - Main gradient bubble with slow wobble */}
                                     <motion.div
                                         className="absolute"
                                         style={{
@@ -162,11 +153,11 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                             height: '140px'
                                         }}
                                         animate={{
-                                            scale: [1, 1.08, 1],
-                                            opacity: [0.9, 1, 0.9]
+                                            rotate: [0, 3, -3, 0],
+                                            scale: [1, 1.02, 1]
                                         }}
                                         transition={{
-                                            duration: 2,
+                                            duration: 4,
                                             repeat: Infinity,
                                             ease: "easeInOut"
                                         }}
