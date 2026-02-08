@@ -37,6 +37,8 @@ export default function FamilyCircle() {
     const [voiceStage, setVoiceStage] = useState<'listening' | 'confirming' | 'success'>('listening');
     const [transcript, setTranscript] = useState("");
     const [activeTab, setActiveTab] = useState<'overview' | 'permissions'>('overview');
+    const [activeCardIndex, setActiveCardIndex] = useState(0);
+    const cardsScrollRef = useRef<HTMLDivElement>(null);
 
     // Chat State
     const [chatStage, setChatStage] = useState<ConversationStage>('idle');
@@ -53,6 +55,16 @@ export default function FamilyCircle() {
     useEffect(() => {
         scrollToBottom();
     }, [messages, chatStage]);
+
+    // Handle carousel scroll for pagination
+    const handleCardsScroll = () => {
+        if (cardsScrollRef.current) {
+            const scrollLeft = cardsScrollRef.current.scrollLeft;
+            const cardWidth = cardsScrollRef.current.clientWidth * 0.85;
+            const index = Math.round(scrollLeft / cardWidth);
+            setActiveCardIndex(Math.max(0, Math.min(2, index)));
+        }
+    };
 
     useEffect(() => {
         if (chatStage === 'userTyping') {
@@ -475,7 +487,11 @@ export default function FamilyCircle() {
                                             <button className="text-xs font-semibold text-gray-500 hover:text-gray-800 transition-colors">See all</button>
                                         </div>
 
-                                        <div className="flex gap-4 overflow-x-auto no-scrollbar pb-6 px-6 -mx-6 scroll-smooth snap-x snap-mandatory">
+                                        <div
+                                            ref={cardsScrollRef}
+                                            onScroll={handleCardsScroll}
+                                            className="flex gap-4 overflow-x-auto no-scrollbar pb-6 px-6 -mx-6 scroll-smooth snap-x snap-mandatory"
+                                        >
                                             {/* Household Bills Card */}
                                             <div
                                                 className="relative min-w-[85vw] h-[241px] rounded-[32px] p-6 overflow-hidden snap-center group shadow-xl"
@@ -514,9 +530,28 @@ export default function FamilyCircle() {
 
                                         {/* Pagination Dots */}
                                         <div className="flex justify-center items-center gap-2 mt-2">
-                                            <div className="w-2 h-2 rounded-full bg-[#060928]" />
-                                            <div className="w-2 h-2 rounded-full bg-[#E5D7DA] opacity-50" />
-                                            <div className="w-2 h-2 rounded-full bg-[#E5D7DA] opacity-50" />
+                                            {[0, 1, 2].map((index) => (
+                                                <button
+                                                    key={index}
+                                                    onClick={() => {
+                                                        if (cardsScrollRef.current) {
+                                                            const cardWidth = cardsScrollRef.current.clientWidth * 0.85;
+                                                            cardsScrollRef.current.scrollTo({
+                                                                left: cardWidth * index,
+                                                                behavior: 'smooth'
+                                                            });
+                                                        }
+                                                    }}
+                                                    className="transition-all duration-300"
+                                                >
+                                                    <div
+                                                        className={`w-2 h-2 rounded-full transition-all ${activeCardIndex === index
+                                                            ? 'bg-[#060928] scale-125'
+                                                            : 'bg-[#E5D7DA] opacity-50'
+                                                            }`}
+                                                    />
+                                                </button>
+                                            ))}
                                         </div>
                                     </div>
 
