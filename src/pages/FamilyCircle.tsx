@@ -530,7 +530,7 @@ export default function FamilyCircle() {
 
                                         {/* Pagination Dots */}
                                         <div className="flex justify-center items-center gap-2 mt-2">
-                                            {[0, 1, 2].map((index) => (
+                                            {[0, 1].map((index) => (
                                                 <button
                                                     key={index}
                                                     onClick={() => {
@@ -734,12 +734,20 @@ export default function FamilyCircle() {
                     >
                         {/* Chat Header */}
                         <div className="px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4">
-                            <div className="flex items-center justify-between mb-6">
+                            <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
-                                    <button onClick={handleBackToDashboard} className="hover:opacity-80 transition-opacity">
-                                        <ChevronLeft size={24} className="text-white" />
+                                    <button onClick={handleBackToDashboard} className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shadow-md hover:opacity-80 transition-opacity">
+                                        <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/omar.png)` }} />
                                     </button>
-                                    <h1 className="text-xl font-bold text-white">Family Circle Chat</h1>
+                                    <h1 className="text-xl font-bold text-white">Welcome Omar</h1>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <button className="relative hover:opacity-80 transition-opacity">
+                                        <img src={`${import.meta.env.BASE_URL}assets/ai-search.svg`} className="w-6 h-6" alt="AI Search" />
+                                    </button>
+                                    <button className="relative hover:opacity-80 transition-opacity">
+                                        <img src={`${import.meta.env.BASE_URL}assets/notification.svg`} className="w-6 h-6" alt="Notifications" />
+                                    </button>
                                 </div>
                             </div>
                         </div>
