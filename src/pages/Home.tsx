@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, MessageSquare, ChevronRight, User, CreditCard, Eye, Plus, ArrowRightLeft, Circle } from 'lucide-react';
+import { ChevronRight, User, CreditCard, Eye, Plus, ArrowRightLeft, Circle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BillCard } from '../components/home/BillCard';
 import { BottomNav } from '../components/ui/BottomNav';
@@ -56,13 +56,11 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center gap-5">
-                    <button className="relative">
-                        <Search size={22} className="text-white" />
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-pink-500 rounded-full border-2 border-[#1a0b2e]" />
+                    <button>
+                        <img src={`${import.meta.env.BASE_URL}assets/ai-search.svg`} className="w-[22px] h-[22px]" alt="" />
                     </button>
-                    <button className="relative" onClick={() => navigate('/chat-greeting')}>
-                        <MessageSquare size={22} className="text-white" />
-                        <div className="absolute top-0 -right-1 w-2.5 h-2.5 bg-pink-500 rounded-full border-2 border-[#1a0b2e]" />
+                    <button>
+                        <img src={`${import.meta.env.BASE_URL}assets/notification.svg`} className="w-[22px] h-[22px]" alt="" />
                     </button>
                 </div>
             </div>

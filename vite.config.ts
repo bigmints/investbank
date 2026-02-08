@@ -20,16 +20,28 @@ export default defineConfig({
         theme_color: '#0D1252',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: 'assets/appicon.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any'
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'assets/appicon.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any'
+          },
+          {
+            src: 'assets/appicon.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable'
+          },
+          {
+            src: 'assets/appicon.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
           }
         ],
         display: 'standalone',

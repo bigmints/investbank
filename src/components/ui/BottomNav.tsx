@@ -14,7 +14,7 @@ export const BottomNav: React.FC = () => {
     const [activeTab, setActiveTab] = useState('circles');
 
     return (
-        <div className="fixed bottom-6 left-4 right-4 z-50">
+        <div className="fixed left-4 right-4 z-50" style={{ bottom: 'calc(1.5rem + env(safe-area-inset-bottom))' }}>
             <nav
                 className="relative mx-auto max-w-2xl overflow-hidden"
                 style={{
