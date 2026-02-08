@@ -730,10 +730,10 @@ export default function FamilyCircle() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -100 }}
                         transition={{ duration: 0.3 }}
-                        className="flex flex-col h-full overflow-hidden"
+                        className="relative h-full"
                     >
-                        {/* Chat Header - Sticky */}
-                        <div className="flex-shrink-0 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4 backdrop-blur-md" style={{ background: 'linear-gradient(180deg, #0D1252 0%, #0D1252 70%, rgba(13, 18, 82, 0.98) 100%)' }}>
+                        {/* Chat Header - Fixed with transparent gradient */}
+                        <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-6" style={{ background: 'linear-gradient(180deg, rgba(13, 18, 82, 0.95) 0%, rgba(13, 18, 82, 0.8) 60%, rgba(13, 18, 82, 0) 100%)', backdropFilter: 'blur(10px)' }}>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <button onClick={handleBackToDashboard} className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shadow-md hover:opacity-80 transition-opacity">
@@ -752,8 +752,8 @@ export default function FamilyCircle() {
                             </div>
                         </div>
 
-                        {/* Chat Messages Container */}
-                        <div className="flex-1 px-6 pt-6 pb-6 overflow-y-auto space-y-4">
+                        {/* Chat Messages Container - scrolls behind header */}
+                        <div className="h-full px-6 pt-[calc(env(safe-area-inset-top)+100px)] pb-6 overflow-y-auto space-y-4">
                             <AnimatePresence>
                                 {messages.map((message) => (
                                     <motion.div
