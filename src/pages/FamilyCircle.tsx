@@ -730,10 +730,10 @@ export default function FamilyCircle() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -100 }}
                         transition={{ duration: 0.3 }}
-                        className="flex flex-col h-screen"
+                        className="flex flex-col h-full overflow-hidden"
                     >
                         {/* Chat Header - Sticky */}
-                        <div className="sticky top-0 z-10 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4 backdrop-blur-md" style={{ background: 'linear-gradient(180deg, #0D1252 0%, #0D1252 70%, rgba(13, 18, 82, 0.98) 100%)' }}>
+                        <div className="flex-shrink-0 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4 backdrop-blur-md" style={{ background: 'linear-gradient(180deg, #0D1252 0%, #0D1252 70%, rgba(13, 18, 82, 0.98) 100%)' }}>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <button onClick={handleBackToDashboard} className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shadow-md hover:opacity-80 transition-opacity">
