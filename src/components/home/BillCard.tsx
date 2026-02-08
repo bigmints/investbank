@@ -15,16 +15,16 @@ export const BillCard: React.FC<BillCardProps> = ({ isVisible, onClose }) => {
                     initial={{ opacity: 0, y: -20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="relative mx-4 mt-6 p-4 rounded-2xl bg-[#090616] border border-white/5 shadow-2xl overflow-hidden"
+                    className="relative mx-4 mt-6 p-4 rounded-2xl bg-[#090616] border border-white/5 shadow-2xl "
                 >
                     {/* Background Gradient Blur */}
                     <div className="absolute -left-10 top-0 w-32 h-32 bg-blue-500/20 blur-[50px] rounded-full" />
 
                     <button
                         onClick={onClose}
-                        className="absolute top-3 right-3 text-gray-400 hover:text-white"
+                        className="absolute -top-4 -right-4 w-8 h-8 rounded-full bg-[#060928] flex items-center justify-center text-white hover:bg-[#5a2352] transition-colors z-20 shadow-lg"
                     >
-                        <X size={18} />
+                        <X size={16} strokeWidth={3} />
                     </button>
 
                     <div className="relative flex items-center justify-between z-10">

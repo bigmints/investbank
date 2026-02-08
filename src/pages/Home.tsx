@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, MessageSquare, ChevronRight, User, CreditCard, Eye, Plus, ArrowRightLeft, Circle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { BillCard } from '../components/home/BillCard';
 import { BottomNav } from '../components/ui/BottomNav';
 
@@ -19,17 +20,37 @@ const transactions = [
     { id: 10, name: 'Etisalat', subtitle: 'Mobile Bill', amount: '299.00', date: '20th Sep, 2025', type: 'expense' },
 ];
 
+const TOTAL_CARDS = 2;
+
 export default function Home() {
     const [showBill, setShowBill] = useState(true);
+    const [activeCardIndex, setActiveCardIndex] = useState(0);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const handleScroll = () => {
+            const scrollLeft = container.scrollLeft;
+            const cardWidth = container.offsetWidth * 0.85; // 85vw
+            const currentIndex = Math.round(scrollLeft / cardWidth);
+            setActiveCardIndex(Math.min(currentIndex, TOTAL_CARDS - 1));
+        };
+
+        container.addEventListener('scroll', handleScroll);
+        return () => container.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <div className="min-h-screen bg-[length:100%_100%] text-white font-sans selection:bg-pink-500/30" style={{ background: 'linear-gradient(301deg, #0D1252 1.28%, #D80136 122.11%)' }}>
+        <div className="min-h-screen bg-[length:100%_100%] text-white font-sans selection:bg-pink-500/30" style={{ background: 'linear-gradient(100deg, #0D1252 1.28%, #D80136 122.11%)' }}>
 
             {/* --- HEADER SECTION --- */}
             <div className="px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white/20 overflow-hidden">
-                        <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url(https://i.pravatar.cc/150?img=11)' }} />
+                        <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/omar.png)` }} />
                     </div>
                     <h1 className="text-lg font-bold">Welcome Omar</h1>
                 </div>
@@ -39,7 +60,7 @@ export default function Home() {
                         <Search size={22} className="text-white" />
                         <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-pink-500 rounded-full border-2 border-[#1a0b2e]" />
                     </button>
-                    <button className="relative">
+                    <button className="relative" onClick={() => navigate('/chat-greeting')}>
                         <MessageSquare size={22} className="text-white" />
                         <div className="absolute top-0 -right-1 w-2.5 h-2.5 bg-pink-500 rounded-full border-2 border-[#1a0b2e]" />
                     </button>
@@ -51,17 +72,17 @@ export default function Home() {
 
             {/* --- ACCOUNT CARDS --- */}
             <div className="mt-6">
-                <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 pl-4">
+                <div ref={scrollContainerRef} className="flex gap-3 overflow-x-auto no-scrollbar pb-2 pl-4 scroll-smooth">
                     {/* Current Account Card */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="relative w-[85vw] flex-shrink-0 bg-gradient-to-br from-[#5d1a4d] to-[#3d0a3d] rounded-3xl p-5 overflow-hidden"
+                        className="relative w-[85vw] flex-shrink-0 bg-cover bg-center rounded-[16px] p-6 overflow-hidden"
+                        style={{
+                            backgroundImage: `url(${import.meta.env.BASE_URL}assets/card1.png)`,
+                            boxShadow: '0 6px 16px -6px rgba(0, 0, 0, 0.3)'
+                        }}
                     >
-                        {/* Decorative circles */}
-                        <div className="absolute -right-8 -top-8 w-32 h-32 border-[20px] border-white/5 rounded-full" />
-                        <div className="absolute -right-4 top-24 w-20 h-20 border-[15px] border-white/5 rounded-full" />
-                        <div className="absolute left-8 bottom-8 w-24 h-24 border-[18px] border-white/5 rounded-full" />
 
                         <div className="relative z-10">
                             <div className="flex items-center justify-between mb-6">
@@ -88,11 +109,13 @@ export default function Home() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="relative w-[85vw] flex-shrink-0 bg-gradient-to-br from-[#2d1a4d] to-[#1d0a3d] rounded-3xl p-5 overflow-hidden mr-4"
+                        onClick={() => navigate('/family-circle')}
+                        className="relative w-[85vw] flex-shrink-0 bg-cover bg-center rounded-[16px] p-6 overflow-hidden mr-4 cursor-pointer active:scale-[0.98] transition-all"
+                        style={{
+                            backgroundImage: `url(${import.meta.env.BASE_URL}assets/card2.png)`,
+                            boxShadow: '0 6px 16px -6px rgba(0, 0, 0, 0.3)'
+                        }}
                     >
-                        {/* Decorative circles */}
-                        <div className="absolute -right-12 top-12 w-40 h-40 border-[25px] border-white/5 rounded-full" />
-                        <div className="absolute right-4 bottom-12 w-16 h-16 border-[12px] border-white/5 rounded-full" />
 
                         <div className="relative z-10">
                             <div className="flex items-center justify-between mb-6">
@@ -107,13 +130,13 @@ export default function Home() {
 
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white overflow-hidden">
-                                    <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url(https://i.pravatar.cc/150?img=11)' }} />
+                                    <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/Amal.png)` }} />
                                 </div>
                                 <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white overflow-hidden -ml-3">
-                                    <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url(https://i.pravatar.cc/150?img=33)' }} />
+                                    <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/zyed.png)` }} />
                                 </div>
                                 <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white overflow-hidden -ml-3">
-                                    <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url(https://i.pravatar.cc/150?img=44)' }} />
+                                    <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/omar.png)` }} />
                                 </div>
                             </div>
                         </div>
@@ -122,9 +145,13 @@ export default function Home() {
 
                 {/* Pagination dots */}
                 <div className="flex justify-center gap-1.5 mt-4">
-                    <div className="w-2 h-2 rounded-full bg-white" />
-                    <div className="w-2 h-2 rounded-full bg-white/30" />
-                    <div className="w-2 h-2 rounded-full bg-white/30" />
+                    {Array.from({ length: TOTAL_CARDS }).map((_, index) => (
+                        <div
+                            key={index}
+                            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === activeCardIndex ? 'bg-[#060928]' : 'bg-white/30'
+                                }`}
+                        />
+                    ))}
                 </div>
             </div>
 

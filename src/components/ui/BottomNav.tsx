@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Circle, CreditCard, ShoppingBag, Coins, MessageCircle } from 'lucide-react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 
 const tabs = [
-    { name: 'Circles', id: 'circles', icon: Circle },
-    { name: 'Payments', id: 'payments', icon: CreditCard },
-    { name: 'Products', id: 'products', icon: ShoppingBag },
-    { name: 'Jars', id: 'jars', icon: Coins },
-    { name: 'Help', id: 'help', icon: MessageCircle },
+    { name: 'Circles', id: 'circles', icon: `${import.meta.env.BASE_URL}assets/circle-icons.svg` },
+    { name: 'Payments', id: 'payments', icon: `${import.meta.env.BASE_URL}assets/card-icon.svg` },
+    { name: 'Products', id: 'products', icon: `${import.meta.env.BASE_URL}assets/products-icon.svg` },
+    { name: 'Jars', id: 'jars', icon: `${import.meta.env.BASE_URL}assets/jars-icon.svg` },
+    { name: 'Help', id: 'help', icon: `${import.meta.env.BASE_URL}assets/help-icon.svg` },
 ];
 
 export const BottomNav: React.FC = () => {
@@ -21,8 +20,7 @@ export const BottomNav: React.FC = () => {
                 style={{
                     borderRadius: '60px',
                     border: '2px solid transparent',
-                    backgroundImage: `background: #131A6080;
-                                        background-blend-mode: overlay;`,
+                    background: 'rgba(19, 26, 96, 0.50)',
                     backgroundOrigin: 'padding-box, border-box',
                     backgroundClip: 'padding-box, border-box',
                     backdropFilter: 'blur(2px)',
@@ -30,10 +28,9 @@ export const BottomNav: React.FC = () => {
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
                 }}
             >
-                <div className="relative flex justify-between items-center px-3 py-3">
+                <div className="relative flex justify-between items-center px-3 py-2">
                     {tabs.map((tab) => {
                         const isActive = activeTab === tab.id;
-                        const Icon = tab.icon;
 
                         return (
                             <button
@@ -44,7 +41,7 @@ export const BottomNav: React.FC = () => {
                                 {isActive && (
                                     <motion.div
                                         layoutId="activeTabPill"
-                                        className="absolute inset-0 bg-white/30 rounded-full"
+                                        className="absolute inset-0 bg-white/50 rounded-full"
                                         initial={false}
                                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                                         style={{
@@ -55,17 +52,22 @@ export const BottomNav: React.FC = () => {
                                 )}
 
                                 <div className="relative z-10 flex flex-col items-center gap-1.5">
-                                    <Icon
-                                        size={24}
+                                    <img
+                                        src={tab.icon}
+                                        alt={tab.name}
                                         className={clsx(
-                                            "transition-all duration-300",
-                                            isActive ? "text-white" : "text-gray-300"
+                                            "w-6 h-6 transition-all duration-300",
+                                            isActive ? "opacity-100 scale-110" : "opacity-60 grayscale brightness-200"
                                         )}
-                                        strokeWidth={isActive ? 2 : 1.5}
+                                        style={{
+                                            filter: isActive
+                                                ? 'brightness(0) invert(1)'
+                                                : 'brightness(0) invert(0.8)'
+                                        }}
                                     />
                                     <span className={clsx(
-                                        "text-[11px] font-medium leading-none transition-all duration-300",
-                                        isActive ? "text-white" : "text-gray-300"
+                                        "text-[10px] font-medium leading-none transition-all duration-300",
+                                        isActive ? "text-white opacity-100" : "text-white/60"
                                     )}>
                                         {tab.name}
                                     </span>
