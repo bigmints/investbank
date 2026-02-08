@@ -732,8 +732,8 @@ export default function FamilyCircle() {
                         transition={{ duration: 0.3 }}
                         className="flex flex-col h-screen"
                     >
-                        {/* Chat Header */}
-                        <div className="px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4">
+                        {/* Chat Header - Sticky */}
+                        <div className="sticky top-0 z-10 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4 backdrop-blur-md bg-gradient-to-b from-[#0D1252] via-[#0D1252]/95 to-[#0D1252]/80">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <button onClick={handleBackToDashboard} className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shadow-md hover:opacity-80 transition-opacity">
