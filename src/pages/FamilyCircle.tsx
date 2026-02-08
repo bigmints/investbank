@@ -733,7 +733,7 @@ export default function FamilyCircle() {
                         className="flex flex-col h-full"
                     >
                         {/* Chat Header - Fixed with transparent gradient */}
-                        <div className="fixed top-0 left-0 right-0 z-20 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-8 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(93, 26, 77, 0.98) 0%, rgba(93, 26, 77, 0.85) 40%, hsla(0, 0%, 80%, 0.00) 100%)', backdropFilter: 'blur(8px)' }}>
+                        <div className="fixed top-0 left-0 right-0 z-20 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-4 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(93, 26, 77, 0.98) 0%, rgba(93, 26, 77, 0.85) 40%, hsla(0, 0%, 80%, 0.00) 100%)', backdropFilter: 'blur(8px)' }}>
                             <div className="flex items-center justify-between pointer-events-auto">
                                 <div className="flex items-center gap-3">
                                     <button onClick={handleBackToDashboard} className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shadow-md hover:opacity-80 transition-opacity">
@@ -753,7 +753,7 @@ export default function FamilyCircle() {
                         </div>
 
                         {/* Chat Messages Container - scrolls behind header */}
-                        <div className="flex-1 px-6 pt-[calc(env(safe-area-inset-top)+90px)] pb-6 overflow-y-auto space-y-4">
+                        <div className="flex-1 px-6 pt-[calc(env(safe-area-inset-top)+120px)] pb-6 overflow-y-auto space-y-4">
                             <AnimatePresence>
                                 {messages.map((message) => (
                                     <motion.div
@@ -879,7 +879,7 @@ export default function FamilyCircle() {
 
                         {/* Chat Input Bar */}
                         {(chatStage === 'idle' || chatStage === 'followUp') && (
-                            <div className="px-6 pb-[calc(env(safe-area-inset-bottom)+20px)]">
+                            <div className="px-6 pb-[calc(env(safe-area-inset-bottom)-60px)]">
                                 <div className="relative">
                                     <input
                                         type="text"
