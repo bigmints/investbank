@@ -753,7 +753,7 @@ export default function FamilyCircle() {
                         </div>
 
                         {/* Chat Messages Container */}
-                        <div className="flex-1 px-6 pb-6 overflow-y-auto space-y-4">
+                        <div className="flex-1 px-6 pt-6 pb-6 overflow-y-auto space-y-4">
                             <AnimatePresence>
                                 {messages.map((message) => (
                                     <motion.div
