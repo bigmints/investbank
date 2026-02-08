@@ -730,11 +730,11 @@ export default function FamilyCircle() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -100 }}
                         transition={{ duration: 0.3 }}
-                        className="relative h-full"
+                        className="flex flex-col h-full"
                     >
                         {/* Chat Header - Fixed with transparent gradient */}
-                        <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-6" style={{ background: 'linear-gradient(180deg, rgba(13, 18, 82, 0.95) 0%, rgba(13, 18, 82, 0.8) 60%, rgba(13, 18, 82, 0) 100%)', backdropFilter: 'blur(10px)' }}>
-                            <div className="flex items-center justify-between">
+                        <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-6" style={{ background: 'linear-gradient(180deg, rgba(13, 18, 82, 0.95) 0%, rgba(13, 18, 82, 0.8) 40%, hsla(0, 0%, 80%, 0.00) 100%)', backdropFilter: 'blur(10px)' }}>
+                            <div className="flex items-center justify-between pointer-events-auto">
                                 <div className="flex items-center gap-3">
                                     <button onClick={handleBackToDashboard} className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 shadow-md hover:opacity-80 transition-opacity">
                                         <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/omar.png)` }} />
@@ -753,7 +753,7 @@ export default function FamilyCircle() {
                         </div>
 
                         {/* Chat Messages Container - scrolls behind header */}
-                        <div className="h-full px-6 pt-[calc(env(safe-area-inset-top)+100px)] pb-6 overflow-y-auto space-y-4">
+                        <div className="flex-1 px-6 pt-[calc(env(safe-area-inset-top)+90px)] pb-6 overflow-y-auto space-y-4">
                             <AnimatePresence>
                                 {messages.map((message) => (
                                     <motion.div
