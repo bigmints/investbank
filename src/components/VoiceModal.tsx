@@ -106,7 +106,12 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                 exit={{ opacity: 0 }}
                             >
                                 {/* Layered Bubble Visualization */}
-                                <div className="relative w-64 h-64 flex items-center justify-center">
+                                <div
+                                    className="relative w-64 h-64 flex items-center justify-center"
+                                    style={{
+                                        filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.3))'
+                                    }}
+                                >
                                     {/* Outer static dashed circle */}
                                     <div className="absolute inset-0">
                                         <svg className="w-full h-full" viewBox="0 0 256 256">
@@ -126,8 +131,9 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                     <motion.div
                                         className="absolute"
                                         style={{
-                                            width: '200px',
-                                            height: '200px'
+                                            zIndex: 9999,
+                                            width: '180px',
+                                            height: '180px'
                                         }}
                                         animate={{
                                             rotate: 360
