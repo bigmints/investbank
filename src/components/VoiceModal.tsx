@@ -122,12 +122,12 @@ export default function VoiceModal({ isActive, stage, transcript, onClose, onCon
                                         </svg>
                                     </div>
 
-                                    {/* Bubble Layer 2 - Rotating ring */}
+                                    {/* Bubble Layer 2 - Rotating ring (outer) */}
                                     <motion.div
                                         className="absolute"
                                         style={{
-                                            width: '180px',
-                                            height: '180px'
+                                            width: '200px',
+                                            height: '200px'
                                         }}
                                         animate={{
                                             rotate: 360
